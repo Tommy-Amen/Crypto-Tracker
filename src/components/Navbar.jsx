@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Coins, Search } from "lucide-react";
 import { CryptoContext } from "../context/CryptoContext";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [input, setInput] = useState("");
   const [filteredCoins, setFilteredCoins] = useState([]);
@@ -29,15 +30,15 @@ const Navbar = () => {
 
   return (
     <nav className="flex flex-wrap md:flex-nowrap items-center justify-between gap-4 px-[5%] md:px-[8%] lg:px-[10%] py-5 bg-gray-900/80 backdrop-blur-md border-b border-gray-700/30 sticky top-0 z-50">
-      <a
-        href=""
+      <Link
+        to="/"
         className="order-1 flex-shrink-0 flex items-center gap-2 hover:scale-105 transition-transform"
       >
         <Coins className="w-8 h-8 text-emerald-400 drop-shadow-[0_0_8px_rgba(74,222,128,0.6)]" />
         <span className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
           CryptoTracker
         </span>
-      </a>
+      </Link>
       {/* SEARCH */}
       <form
         onSubmit={searchHandler}
