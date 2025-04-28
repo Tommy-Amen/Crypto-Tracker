@@ -130,14 +130,12 @@ const CoinArea = () => {
                   }`}
                 >
                   <span>
-                    {item.price_change_percentage_24h > 0
-                      ? "&#9650;"
-                      : "&#9660;"}
+                    {item.price_change_percentage_24h > 0 ? "▲" : "▼"}
                   </span>
                   {Math.abs(item.price_change_percentage_24h.toFixed(2))}%
                 </div>
                 <div className="text-right">
-                  <p>
+                  <p className="text-sm lg:text-base text-gray-100">
                     {currentCurrency.symbol} {item.market_cap.toLocaleString()}
                   </p>
                   <p className="text-xs sm:text-sm text-emerald-400/60 mt-0.5">
@@ -149,7 +147,7 @@ const CoinArea = () => {
             </div>
 
             {/* DESKTOP VIEW */}
-            <div className="hidded md:grid grid-cols-5 gap-4 items-center">
+            <div className="hidden md:grid grid-cols-5 gap-4 items-center">
               <span className="text-emerald-400/80 text-sm lg:text-base">
                 #{item.market_cap_rank}
               </span>
@@ -163,12 +161,39 @@ const CoinArea = () => {
                   <p className="font-medium text-gray-100 text-base lg:text-lg">
                     {item.name}
                   </p>
-                  <p className="text-sm lg:text-base text-emerald-400/80">{item.symbol.toUpperCase()}</p>
+                  <p className="text-sm lg:text-base text-emerald-400/80">
+                    {item.symbol.toUpperCase()}
+                  </p>
                 </div>
-                    </div>
-                    <div className="flex items-center">
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="text-cyan-500/80">
+                  {currentCurrency.symbol}
+                </span>
+                <span className="text-gray-100">
+                  {item.current_price.toLocaleString()}
+                </span>
+              </div>
+              <div
+                className={`text-center px-2 py-1 rounded-full text-sm lg:text-base ${
+                  item.price_change_percentage_24h > 0
+                    ? "bg-emerald-500/20"
+                    : "bg-red-500/20 text-red-400"
+                }`}
+              >
+                {item.price_change_percentage_24h > 0 ? "▲" : "▼"}{" "}
+                {Math.abs(item.price_change_percentage_24h.toFixed(2))}%
+              </div>
 
-                    </div>
+              <div className="text-right">
+                <p className="text-sm lg:text-base text-gray-100">
+                  {currentCurrency.symbol} {item.market_cap.toLocaleString()}
+                </p>
+                <p className="text-xs lg:text-sm text-emerald-400/60 mt-0.5">
+                  Vol: {currentCurrency.symbol}{" "}
+                  {item.total_volume.toLocaleString()}
+                </p>
+              </div>
             </div>
           </Link>
         ))}
